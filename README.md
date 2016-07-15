@@ -1,13 +1,15 @@
 # Readding_Nero_Files
-#Estas son las mismas instrucciones que encontrarás en "instrucciones.pdf"
+#Estas son las mismas instrucciones que encontrarás en "instrucciones.pdf" pero con menos formato
 Código simple para reconstruir la masa transversa del bosón W
 
 Preámbulo:
+
 Primero necesitas descargar el archivo con los datos, está en Google Drive y esta es la dirección para descargarlo: “https://drive.google.com/file/d/0B74TqGKley_BUWVnSUtWQnFoSzA/view?usp=sharing”
 Una vez que lo hayas hecho crea un folder llamado “trabajo”, y dentro de él crea los folders “myprogram1” y “samples”, y dentro de “myprogram1” crea los folders “bin” y “lib”.
 Guarda el archivo que descargaste de Google drive en el folder llamado “samples”.
 
 Hecho esto entra a:
+
 “https://github.com/Frigorifico9/Readding_Nero_Files/blob/master/myprogram1.cpp”, 
 y asegúrate de que puedas ver en esta página el código de los archivos “makefile” y “myprogram1”
 
