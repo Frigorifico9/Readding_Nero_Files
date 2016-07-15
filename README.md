@@ -12,20 +12,30 @@ Hecho esto entra a:
 y asegúrate de que puedas ver en esta página el código de los archivos “makefile” y “myprogram1”
 
 Requerimientos generales:
+
 1.-Haber instalado Root
+
 2.-Tener el folder previamente mencionado con el contenido indicado
+
 3.-Usar un sistema operativo de Unix (Mac o Linux)
 
 Requerimientos de la terminal:
 Esto puede ser ligeramente diferente dependiendo de tu sistema operativo, como referencia yo uso “Mac OS X 10.11.5 64-bit”.
+
 1.-Abre tu terminal
+
 2.-Introduce el siguiente código y da enter: vi ~/.bashrc
+
 3.-Se abrirá dentro de la terminal tu “bash”
+
 4.-Presiona la tecla de dirección hacia abajo hasta que ya no puedas bajar (no podrás llegar hasta abajo)
+
 5.-Cuando ya no puedas bajar más copia y pega las siguientes instrucciones:
 
 export ROOTSYS=/Users/Fer/root/root-6.06.06
+
 source $ROOTSYS/bin/thisroot.sh
+
 export PATH=$ROOTSYS/bin:$PATH
 
 Nota que en la primera instrucción necesitas especificar la dirección de donde está Root en tu computadora
