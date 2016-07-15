@@ -43,7 +43,7 @@ int main(int argc, char* argv[])
   //Creamos el lienzo donde se hará la imagen
   TCanvas* c1 = new TCanvas("c1", "Masa W", 600, 600);
   //Aquí es donde la magia sucede
-  tree->Draw("sqrt((lepP4.Energy())^2-((lepP4.Px())^2+(lepP4.Py())^2+(lepP4.Pz())^2))+sqrt((metP4.Energy())^2-((metP4.Px())^2+(metP4.Py())^2+(metP4.Pz())^2))","lepPdgId>abs(11)");
+  tree->Draw("sqrt((lepP4.Energy())^2-(lepP4.Px()+lepP4.Py()+lepP4.Pz())^2)+sqrt((metP4.Energy())^2-(metP4.Px()+metP4.Py()+metP4.Pz())^2)","lepPdgId>abs(11)");
   //Primero decimos que vamos a usar el método "Draw" con datos del objeto "tree"
   //Sigue específicar que datos vamos a utilizar y como
   //La fórmula de la masa transversa es "m=√(E^2-|p|^2)"
