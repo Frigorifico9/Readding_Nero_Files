@@ -4,13 +4,17 @@ Código simple para reconstruir la masa transversa del bosón W
 
 Preámbulo:
 
-Primero necesitas descargar el archivo con los datos, está en Google Drive y esta es la dirección para descargarlo: “https://drive.google.com/file/d/0B74TqGKley_BUWVnSUtWQnFoSzA/view?usp=sharing”
+Primero necesitas descargar el archivo con los datos, está en Google Drive y esta es la dirección para descargarlo:
+
+“https://drive.google.com/file/d/0B74TqGKley_BUWVnSUtWQnFoSzA/view?usp=sharing”
+
 Una vez que lo hayas hecho crea un folder llamado “trabajo”, y dentro de él crea los folders “myprogram1” y “samples”, y dentro de “myprogram1” crea los folders “bin” y “lib”.
 Guarda el archivo que descargaste de Google drive en el folder llamado “samples”.
 
 Hecho esto entra a:
 
 “https://github.com/Frigorifico9/Readding_Nero_Files/blob/master/myprogram1.cpp”, 
+
 y asegúrate de que puedas ver en esta página el código de los archivos “makefile” y “myprogram1”
 
 Requerimientos generales:
@@ -46,6 +50,7 @@ Nota que en la primera instrucción necesitas especificar la dirección de donde
 
 
 Instrucciones:
+
 1.-Copia el código que puedes ver en GitHub cuando das clic en “makefile” y pégalo en un archivo nuevo de un procesador de textos como TextEdit, Sublime Text 2, NotePad, o similares y guárdalo con el nombre “makefile” (tiene que ser este nombre) y como un archivo de texto, con extensión .txt por ejemplo, y guárdalo en el folder “myprogram1”
 
 1.5.-Copia el código que puedes ver en GitHub cuando das clic en “myprogram1” y pégalo en un archivo nuevo de un procesador de textos como TextEdit, Sublime Text 2, NotePad, o similares
@@ -63,6 +68,7 @@ Si ves el folder y no únicamente sus archivos tienes que entrar al folder
 6.-Tienes que activar el archivo “makefile” que debe de estar en el folder “miprogram1”. Para esto si tienes OS o Linux solo escribe “make” en tu terminal 
 
 Nota sobre el “makefile”:
+
 Este archivo en una “caja negra”, no importa que no sepas como funciona, sino como usarlo.
 Este archivo lee códigos de root, y c++ en general, y construye con lo que leyó algo que la computadora puede entender, se conocen como “ejecutables” y suelen ser .exec, .exe, o .dmg.
 Hacer este proceso se conoce como “compilar”.
@@ -78,8 +84,10 @@ Esta es la parte del “makefile” que cambiarías, solo la parte del final (co
 myprogram1 : myprogram1.o
 
 7.-Si después de unos momentos tras haber escrito el comando “make” ves algo como:
+
 g++ -g -Wall -fPIC -Wno-deprecated -ggdb -pthread -stdlib=libc++ -std=c++11 -m64 -I/Users/Fer/root/root-6.06.06/include -Iaux   -c -o myprogram1.o myprogram1.cpp
 compiling and linking myprogram1
+
 Significa que no hubo problemas, específicamente la parte de “compiling and linking myprogram1”
 
 7.5.-Si ves algún mensaje de error en tu terminal: verifica que la dirección del archivo es correcta en la línea 41, y que dentro del folder “myprogram1” tengas los folders “lib” y “bin”, también verifica que no hayas hecho cambios en el “makefile”
