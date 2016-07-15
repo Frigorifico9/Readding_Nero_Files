@@ -4,12 +4,8 @@ Código simple para reconstruir la masa transversa del bosón W
 
 Preámbulo:
 
-Primero necesitas descargar el archivo con los datos, está en Google Drive y esta es la dirección para descargarlo:
-
-“https://drive.google.com/file/d/0B74TqGKley_BUWVnSUtWQnFoSzA/view?usp=sharing”
-
-Una vez que lo hayas hecho crea un folder llamado “trabajo”, y dentro de él crea los folders “myprogram1” y “samples”, y dentro de “myprogram1” crea los folders “bin” y “lib”.
-Guarda el archivo que descargaste de Google drive en el folder llamado “samples”.
+Se te hará llegar un archivo de root con los datos a analizar, una vez que lo tengas crea un folder llamado “trabajo”, y dentro de él crea los folders “myprogram1” y “samples”, y dentro de “myprogram1” crea los folders “bin” y “lib”.
+Guarda el archivo que de root en el folder llamado “samples”.
 
 Hecho esto entra a:
 
