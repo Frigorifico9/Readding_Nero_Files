@@ -51,7 +51,7 @@ Instrucciones:
 
 1.5.-Copia el código que puedes ver en GitHub cuando das clic en “myprogram1” y pégalo en un archivo nuevo de un procesador de textos como TextEdit, Sublime Text 2, NotePad, o similares
 
-2.-En la línea 41 donde se carga el archivo entre las comillas tienes que poner la dirección del archivo que descargaste de Google Drive en tu computadora, por ejemplo en mi caso es: “/Users/Fer/Documents/trabajo/samples/NeroNtuples_9.root”
+2.-En la línea 41 donde se carga el archivo entre las comillas tienes que poner la dirección del archivo de root en tu computadora, por ejemplo en mi caso es: “/Users/Fer/Documents/trabajo/samples/NeroNtuples_9.root”
 en tu caso debería de ser similar desde “/trabajo/samples/NeroNtuples_9.root”
 
 3.-Guardar este archivo en el folder “myprogram1” con la extensión .cpp y con el nombre “myprogram1”, tiene que ser ese nombre por razones que se explicarán más adelante
