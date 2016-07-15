@@ -68,7 +68,9 @@ Este archivo lee códigos de root, y c++ en general, y construye con lo que ley�
 Hacer este proceso se conoce como “compilar”.
 Este archivo tiene una parte en la que dice que el archivo al que debe de convertir en un ejecutable se llama “myprogram1” por eso es importante guardar el código con ese nombre, pero eres libre de cambiar esa línea de texto y hacer que compile programas con otro nombre si quieres
 
-Esta es la parte del “makefile” que cambiarías, solo la parte del final:
+Esta es la parte del “makefile” que cambiarías, solo la parte del final (como es código no se visualiza correctamente en el Readme pero si el el pdf): 
+
+
 
 ############################################################################
 # Build main.c compiling only the first prereq: ($<) means main.c
