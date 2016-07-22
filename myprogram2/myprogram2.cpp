@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
   //Essentials
 
   //Upload the file with the data
-  TFile* file = TFile::Open("/Users/Fer/Documents/traajo/samples/NeroNtuples_9.root"); // TFile::Open() instead of a constructor since it works over xrootd etc.
+  TFile* file = TFile::Open("/Users/Fer/Documents/traajo/samples/NeroNtuples_9.root"); // TFile::Open() instead of a constructor since it works over xrootd etc. =D
   
   //Upload the tree with the event data
   TTree *tree=(TTree*)file->Get("nero/events");
@@ -78,7 +78,7 @@ int main(int argc, char* argv[])
   TH1F *emass = new TH1F("emass", "Electron mass", 50, 0, 150);
 
   //Histogram to plot the distribution of electron transverse mass 
-  TH1F *etmass = new TH1F("etmass", "Electron transverse mass", 50, 0, 150);
+  TH1F *etmass = new TH1F("etmass", "Electron transverse momentum", 50, 0, 150);
 
   //Histogram to plot the distribution of the transverse mass 
   TH1F *tmass = new TH1F("tmass", "Missing transverse mass", 50, 0, 150);
@@ -109,10 +109,13 @@ int main(int argc, char* argv[])
     //Create a lorentz vector with the matdata of the current entry
     TLorentzVector * lorentz_metdata = (TLorentzVector *) metdata->At(0);
 
-    //Get the invariant transverse mass of that lorentz vector
-    mass=lorentz_metdata->Mt();
+    //We cannot use math with pointers for some reason, so we create a lorentz vectors that isn't a pointers
+    TLorentzVector addable_lorentz_metdata = *lorentz_metdata;
 
-    //Note: There's a ->M() method we could use, but the values given by ->Mt() seem much more reasonable
+    //Get the invariant transverse mass of that lorentz vector
+    mass=addable_lorentz_metdata.Mt();
+
+    //Note: There's a ->M() method we could use, but the values given by ->Mt() seem more reasonable
       
     //Fill the histogram with the current data
     tmass->Fill(mass);
@@ -128,28 +131,26 @@ int main(int argc, char* argv[])
 
         //Store all the data of the electron in this lorentz vector
         TLorentzVector * lorentz_electrondata = (TLorentzVector *)leptondata->At(j);
-        
-        //Get the invariant transverse mass of that lorentz vector
 
-        mass=lorentz_electrondata->Mt();
+        //We create another lorentz vector that isn't a pointer for the same reasons that before
+        TLorentzVector addable_lorentz_electrondata = *lorentz_electrondata;
+
+        //Get the transverse mass of that lorentz vector
+        mass=addable_lorentz_electrondata.Mt();
 
         //Fill the histogram with the current data
         etmass->Fill(mass);
 
         //We also want the invariant electron mass, which should be neglegible
-        mass=lorentz_electrondata->M();
+        mass=addable_lorentz_electrondata.M();
 
         //Fill the histogram with the current data
         emass->Fill(mass); 
 
-        //We cannot add pointers for some reason, so we create two lorentz vectors that aren't pointers
-        TLorentzVector addable_lorentz_electrondata = *lorentz_electrondata;
-        TLorentzVector addable_lorentz_metdata = *lorentz_metdata;
-
-        //And then we add them
+        //And then we add them up
         TLorentzVector lorentz_wholedata = addable_lorentz_electrondata + addable_lorentz_metdata;
         
-        //Get the invariant mass of the resulting lorentz vector
+        //Get the transverse mass of the resulting lorentz vector
         mass=lorentz_wholedata.Mt();
 
         //Fill the histogram with the current data
@@ -182,7 +183,7 @@ int main(int argc, char* argv[])
   c1->Close();
 
   // cleanup
-  delete file; // automatically deletes "tree", too
+  delete file; // automatically deletes "tree" too
   delete lepPdgId;
   delete leptondata;
   delete metdata;
