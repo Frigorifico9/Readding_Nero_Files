@@ -132,6 +132,9 @@ int main(int argc, char* argv[])
   //Histogram to plot the distribution of the whole mass 
   TH1F *hist_whole_mass_2 = new TH1F("hist_whole_mass_2", "Whole mass", 50, 0, 150); 
 
+  //Scalling variable
+  Double_t scale;
+
 
 /////////////////////////////////////////////////////
 
@@ -349,6 +352,10 @@ int main(int argc, char* argv[])
   //Activate the first section of the canvas
   c_1->cd(1);
 
+  //Get the sale constant
+  scale = 1/hist_met_mass_1->Integral();
+  //Scale the histogram
+  hist_met_mass_1->Scale(scale);
   //Make the histogram
   hist_met_mass_1->Draw("H");
 
@@ -357,18 +364,26 @@ int main(int argc, char* argv[])
 
   //Repeat
   c_1->cd(2);
+  scale = 1/hist_lepton_mass_1->Integral();
+  hist_lepton_mass_1->Scale(scale);
   hist_lepton_mass_1->Draw("H");
   c_1->Update();
 
   c_1->cd(3);
+  scale = 1/hist_jet_mass_1->Integral();
+  hist_jet_mass_1->Scale(scale);
   hist_jet_mass_1->Draw("H");
   c_1->Update();
 
   c_1->cd(4);
+  scale = 1/hist_w_mass_1->Integral();
+  hist_w_mass_1->Scale(scale);
   hist_w_mass_1->Draw("H");
   c_1->Update();
 
   c_1->cd(5);
+  scale = 1/hist_whole_mass_1->Integral();
+  hist_whole_mass_1->Scale(scale);
   hist_whole_mass_1->Draw("H");
   c_1->Update();
 
@@ -380,22 +395,32 @@ int main(int argc, char* argv[])
   
   //Activate the first section of the canvas
   c_2->cd(1);
+  scale = 1/hist_met_mass_2->Integral();
+  hist_met_mass_2->Scale(scale);
   hist_met_mass_2->Draw("H");
   c_2->Update();
 
   c_2->cd(2);
+  scale = 1/hist_lepton_mass_2->Integral();
+  hist_lepton_mass_2->Scale(scale);
   hist_lepton_mass_2->Draw("H");
   c_2->Update();
 
   c_2->cd(3);
+  scale = 1/hist_jet_mass_2->Integral();
+  hist_jet_mass_2->Scale(scale);
   hist_jet_mass_2->Draw("H");
   c_2->Update();
 
   c_2->cd(4);
+  scale = 1/hist_w_mass_2->Integral();
+  hist_w_mass_2->Scale(scale);
   hist_w_mass_2->Draw("H");
   c_2->Update();
 
   c_2->cd(5);
+  scale = 1/hist_whole_mass_2->Integral();
+  hist_whole_mass_2->Scale(scale);
   hist_whole_mass_2->Draw("H");
   c_2->Update();
 
