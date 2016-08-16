@@ -5,13 +5,9 @@
 
 minintu *d;
 
-//This code allows you to get the histograms of the events with any criteria you choose, even no criteria
-//It will produce two images, one with the energy/transverse mass/transverse momentum of every MET, Jet and Lepton that was succesful
-//succesful meaning that they passed the selection criteria
-//and another that requieres more explanation
-//Only if there were succesful Leptons, Jets and Met in a single event it will add their values to the histogram
-//in the case of the leptons and jets it will add all their succesful data of a single event
-//We will refer as the first image as "The histogram of all succesful data" and the second one as "The histogram of all succesful events"   
+//Definitions:
+//Succesfull data: Data that fits some criteria
+//Succesfull event: Event in which all data is succesfull   
 
 int main(int argc, char* argv[])
 { 
@@ -27,7 +23,7 @@ int main(int argc, char* argv[])
   double lepton_eta = 2.5;
   double jet_eta =2.4; 
 
-  //This will be used to avoid events in which only the MET was succesfull
+  //This will be used to use only succesful events
   int criteria1=0;
   int criteria2=0;
   int criteria3=0;
@@ -97,24 +93,6 @@ int main(int argc, char* argv[])
 
 /////////////////////////////////////////////////////
 
-  //Histograms for succesful data
-
-  //Lepton histogram
-  TH1F *hist_lepton_mass_1 = new TH1F("hist_lepton_mass_1", "Lepton transverse momentum", 50, 0, 150);
-
-  //W bosson histogram
-  TH1F *hist_w_mass_1 = new TH1F("hist_w_mass_1", "W mass", 50, 0, 150);
-
-  //MET histogram
-  TH1F *hist_met_mass_1 = new TH1F("hist_met_mass_1", "Missing transverse energy (MET)", 50, 0, 150);
-
-  //Jet histogram
-  TH1F *hist_jet_mass_1 = new TH1F("hist_jet_mass_1", "Jet transverse energy", 50, 0, 150);
-
-  //Histogram to plot the distribution of the whole mass 
-  TH1F *hist_whole_mass_1 = new TH1F("hist_whole_mass_1", "Whole mass", 50, 0, 150); 
-
-
   //Histograms for succesful events
 
   //Lepton histogram
@@ -139,12 +117,6 @@ int main(int argc, char* argv[])
 /////////////////////////////////////////////////////
 
   //Histogram variables
-
-  //Canvas for all succesful data
-  TCanvas* c_1 = new TCanvas("c_1", "Succesful data", 600, 600);
-
-  //Divide that canvas to plot all histograms together
-  c_1->Divide(3,3);
 
   //Canvas for all succesful events
   TCanvas* c_2 = new TCanvas("c_2", "Succesful events", 600, 600);
@@ -192,9 +164,6 @@ int main(int argc, char* argv[])
 
     //Leptons
 
-    //Int_t a=leptondata->GetSize();
-    //cout<<"size "<<a<<endl;
-
     //Selection criteria that avoids empty events
     if((leptondata->GetSize() == lepton_num)||((lepton_num<0) && (leptondata->GetSize() != 0)))
     {
@@ -220,9 +189,6 @@ int main(int argc, char* argv[])
 
         //Selection criteria that chooses energy and invariant angle
         if ((mass<lepton_energy || lepton_energy<0) || (abs(eta)>lepton_eta || lepton_eta<0)) continue;
-
-        //We store the succesful data
-        hist_lepton_mass_1->Fill(mass);
 
         //For the succesful events
         addable_total_lorentz_leptondata=addable_total_lorentz_leptondata+addable_lorentz_leptondata;
@@ -253,8 +219,7 @@ int main(int argc, char* argv[])
     //Selection criteria
     if ((mass>=met_energy)||(met_energy<0))
     {
-      //We store the succesful data
-      hist_met_mass_1->Fill(mass);
+
       addable_lorentz_wholedata=addable_lorentz_metdata;
       
       //We keep track of the conditions met 
@@ -273,9 +238,6 @@ int main(int argc, char* argv[])
 
         //Get the invariant transverse energy of that lorentz vector
         mass=addable_lorentz_wdata.Mt();
-
-        //We store the succesful data
-        hist_w_mass_1->Fill(mass);
       }
     }
 
@@ -303,8 +265,6 @@ int main(int argc, char* argv[])
         eta=addable_lorentz_jetdata.Eta();
  
         if ((mass<jet_energy || jet_energy<0) || (abs(eta)>jet_eta || jet_eta<0)) continue;
-          //Store the succesful data
-          hist_jet_mass_1->Fill(mass);
 
           //For the succesful events
           addable_total_lorentz_jetdata=addable_total_lorentz_jetdata+addable_lorentz_jetdata;
@@ -323,9 +283,6 @@ int main(int argc, char* argv[])
 
     if (criteria3==3)
     {
-      mass=addable_lorentz_wholedata.Et();
-      hist_whole_mass_1->Fill(mass);
-
       //Now to fill the histograms of the succesful events
 
       mass=addable_lorentz_wholedata.Et();
@@ -347,53 +304,8 @@ int main(int argc, char* argv[])
 
   }//This closes the main for loop
 
-//Make the image for the succesful data
-
-  //Activate the first section of the canvas
-  c_1->cd(1);
-
-  //Get the sale constant
-  scale = 1/hist_met_mass_1->Integral();
-  //Scale the histogram
-  hist_met_mass_1->Scale(scale);
-  //Make the histogram
-  hist_met_mass_1->Draw("H");
-
-  //Put it in the canvas
-  c_1->Update();
-
-  //Repeat
-  c_1->cd(2);
-  scale = 1/hist_lepton_mass_1->Integral();
-  hist_lepton_mass_1->Scale(scale);
-  hist_lepton_mass_1->Draw("H");
-  c_1->Update();
-
-  c_1->cd(3);
-  scale = 1/hist_jet_mass_1->Integral();
-  hist_jet_mass_1->Scale(scale);
-  hist_jet_mass_1->Draw("H");
-  c_1->Update();
-
-  c_1->cd(4);
-  scale = 1/hist_w_mass_1->Integral();
-  hist_w_mass_1->Scale(scale);
-  hist_w_mass_1->Draw("H");
-  c_1->Update();
-
-  c_1->cd(5);
-  scale = 1/hist_whole_mass_1->Integral();
-  hist_whole_mass_1->Scale(scale);
-  hist_whole_mass_1->Draw("H");
-  c_1->Update();
-
-  //Save the image with the name you want
-  c_1->SaveAs("test.pdf");
-  c_1->Close();
-
 //Make the image for the succesful events
-  
-  //Activate the first section of the canvas
+
   c_2->cd(1);
   scale = 1/hist_met_mass_2->Integral();
   hist_met_mass_2->Scale(scale);
